@@ -1,0 +1,42 @@
+# Input pkl with a list/array of already cut local configurations.
+# Convention: cfg[0] is the central particle at (0, 0), cfg[1:] are neighbors.
+input_pkl: data/input/coordinates_cut_r6_part_01.pkl
+
+# Output directory. Results are appended sequentially and can be resumed.
+output_dir: data/output/part_01_lmax5
+
+# SCM parameters, same physical convention as article_scm_triplets.
+scm:
+  eps1_r: 3.9
+  eps2_r: 81.0
+  a: 1.0e-6
+  E0: 1.0e5
+  eps0: 8.854187817e-12
+  n_orient: 8
+  n_quad: 8000
+  lmax: 5
+
+# Coordinates convention.
+coordinates:
+  # "diameter" means x,y are in units of d=2a, so centers_SI = coords * d.
+  # "meter" means x,y are already SI.
+  units: diameter
+  dim: 2
+
+# Runtime and saving.
+run:
+  # Saves one JSON line after every configuration. This is safest against power loss.
+  flush_every: 1
+  # If true, skip configs already present in results.jsonl.
+  resume: true
+  # Optional limit for smoke tests; null means all configs.
+  max_configs: null
+  # Progress bar update smoothing.
+  tqdm: true
+
+# Time estimate model obtained from ring benchmark for lmax=6:
+# t6(N) = a * N^p; lmax5 is estimated via ratio_5_to_6.
+time_model:
+  a6: 0.378621574824134
+  p6: 2.033435187848456
+  ratio_5_to_6: 0.6161445745488284
