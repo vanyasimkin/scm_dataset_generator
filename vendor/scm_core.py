@@ -93,7 +93,7 @@ class SCMParams:
 
     eps1_r: float = 3.9
     eps2_r: float = 81.0
-    a: float = 1.0e-6
+    a: float = 1.06e-6
     E0: float = 1.0e5
     eps0: float = 8.854187817e-12
     n_orient: int = 8
